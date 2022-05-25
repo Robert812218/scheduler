@@ -1,5 +1,5 @@
-import React from "react";
-import "./styles.scss"
+import React, { useState, useEffect } from "react";
+import "components/Appointment/styles.scss";
 
 export default function Appointment(props) {
   return (

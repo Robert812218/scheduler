@@ -11,7 +11,7 @@ export default function InterviewerList(props) {
         name={interviewer.name}
         avatar={interviewer.avatar}
         selected={interviewer.id === props.value}
-        // setInterview={event => props.setInterviewer(interviewer.id)}
+        setInterview={event => props.setInterviewer(interviewer.id)}
         setInterview={props.setDay}
 
       />
@@ -22,6 +22,6 @@ export default function InterviewerList(props) {
       <h4 className="interviewers__header text--light">Interviewers</h4>
       <ul className="interviewers__list">{interviewers}</ul>
     </section>
-  )
+  );
 };
 

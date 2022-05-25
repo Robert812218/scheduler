@@ -2,12 +2,15 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "index.scss";
-import Appointment from "components/Appointment/index.js";
+import Appointment from "components/Appointment/index";
 import Button from "components/Button";
+import Confirm from "components/Appointment/Confirm";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+import Empty from "components/Appointment/Empty";
 import InterviewerList from "components/interviewerList";
 import InterviewerListItem from "components/interviewerListItem";
+import Show from "components/Appointment/Show";
 
 
 const days = [
@@ -41,6 +44,16 @@ const interviewers = [
   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
+
+storiesOf("Button", module)
+  .addParameters({
+    backgrounds: [{ name: 'dark', value: '#222f3e', default: true }]
+  })
+  .add("Base", () => <Button>Base</Button>)
+  .add("Confirm", () => <Button confirm>Save</Button>)
+  .add("Danger", () => <Button>Cancel</Button>)
+  .add("Clickable", () => (<Button onClick={action("button-clicked")}>Clickable</Button>))
+  .add("Disabled", () => (<Button disabled onClick={action('button-clicked')}>Clickable</Button>))
 
 
 storiesOf("DayListItem", module) 
@@ -93,7 +106,7 @@ storiesOf("DayListItem", module)
         id={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        setInterviewer={action("setInterviewer")}
+        setInterviewer={action("setInterviewer")(interviewer.id)}
       />
     ));
 
@@ -119,11 +132,16 @@ storiesOf("DayListItem", module)
         />
       ));
 
-      storiesOf("Appointment", module)
+    storiesOf("Appointment", module)
       .addParameters({
         backgrounds: [{ name: "white", value: "#fff", default: true }]
       })
       .add("Appointment", () => <Appointment />)
       .add("Appointment with Time", () => <Appointment time="12pm" />)
       .add("Header", () => <Header time="12pm" />)
-      .add("Empty", () => <Empty onAdd={action("onAdd")});
+      .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+      .add("Show", () => <Show onEdit={action("onEdit")} />)
+      .add("Confirm", () => <Confirm onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+      />)
+      // ^ figure out the action in <Confirm />

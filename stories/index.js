@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "index.scss";
@@ -10,6 +10,7 @@ import DayList from "components/DayList";
 import Empty from "components/Appointment/Empty";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
+import Header from "components/Appointment/Header";
 import InterviewerList from "components/interviewerList";
 import InterviewerListItem from "components/interviewerListItem";
 import Show from "components/Appointment/Show";
@@ -158,3 +159,45 @@ storiesOf("Appointment", module)
     message="Could not delete appointment."
     onClose={action("onClose")}
   />)
+  .add("Form", () =>
+  <Form 
+    interviewers={interviewers}
+    acceptAppointment={action('acceptAppointment')}
+    rejectAppointment={action('rejectAppointment')} 
+  />)
+  // .add("Appointment Empty", () => (
+  //   <Fragment>
+  //     <Appointment id={1} time="4pm" />
+  //     <Appointment time="5pm" />
+  //   </Fragment>
+  // ))
+  // .add("Appointment Booked", () => (
+  //   <Fragment>
+  //     <Appointment
+  //       id={1}
+  //       time="4pm"
+  //       interview={{ student: "Lydia Miller-Jones", interviewer }}
+  //     />
+  //     <Appointment time="5pm" />
+  //   </Fragment>
+  // ))
+  
+  
+
+
+  // The <Form> component should track the following state:
+
+  // student:String
+  // interviewer:Number
+  // The <Form> component should have the following actions:
+  
+  // setStudent:Function
+  // setInterviewer:Function
+  // The <Form> component should take the following props:
+  
+  // student:String
+  // interviewers:Array
+  // interviewer:Number
+  // onSave:Function
+  // onCancel:Function
+  

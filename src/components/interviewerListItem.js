@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import React from "react";
+import classNames from "classnames";
 import './interviewerListItem.scss'
 
 export default function InterviewerListItem(props) {

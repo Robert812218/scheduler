@@ -27,10 +27,8 @@ export default function Form(props) {
         />
       <section className="appointment__card-right">
         <section className="appointment__actions">
-        <Button danger onClick={props.rejectAppointment}
-        >Cancel</Button> 
-        <Button confirm onClick={props.acceptAppointment}
-        >Save</Button>
+        <Button danger onClick={props.rejectAppointment}>Cancel</Button> 
+        <Button confirm onClick={props.acceptAppointment}>Save</Button>
         </section>
       </section>
     </main>

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "index.scss";
-import Appointment from "components/Appointment/index";
+import Appointment from "components/Appointment";
 import Button from "components/Button";
 import Confirm from "components/Appointment/Confirm";
 import DayListItem from "components/DayListItem";
@@ -64,7 +64,8 @@ storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   }) 
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
+  .add("Unselected", () => 
+  <DayListItem name="Monday" spots={5} />)
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
@@ -165,23 +166,23 @@ storiesOf("Appointment", module)
     acceptAppointment={action('acceptAppointment')}
     rejectAppointment={action('rejectAppointment')} 
   />)
-  // .add("Appointment Empty", () => (
-  //   <Fragment>
-  //     <Appointment id={1} time="4pm" />
-  //     <Appointment time="5pm" />
-  //   </Fragment>
-  // ))
-  // .add("Appointment Booked", () => (
-  //   <Fragment>
-  //     <Appointment
-  //       id={1}
-  //       time="4pm"
-  //       interview={{ student: "Lydia Miller-Jones", interviewer }}
-  //     />
-  //     <Appointment time="5pm" />
-  //   </Fragment>
-  // ))
-  
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment 
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+
   
 
 

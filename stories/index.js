@@ -5,7 +5,7 @@ import "index.scss";
 import Appointment from "components/Appointment";
 import Button from "components/Button";
 import Confirm from "components/Appointment/Confirm";
-import DayListItem from "components/DayListItem";
+import DayListItem from "components/DayListItem";cod
 import DayList from "components/DayList";
 import Empty from "components/Appointment/Empty";
 import Error from "components/Appointment/Error";

@@ -5,7 +5,7 @@ import "index.scss";
 import Appointment from "components/Appointment";
 import Button from "components/Button";
 import Confirm from "components/Appointment/Confirm";
-import DayListItem from "components/DayListItem";cod
+import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import Empty from "components/Appointment/Empty";
 import Error from "components/Appointment/Error";
@@ -182,23 +182,3 @@ storiesOf("Appointment", module)
       <Appointment time="5pm" />
     </Fragment>
   ))
-
-  
-
-
-  // The <Form> component should track the following state:
-
-  // student:String
-  // interviewer:Number
-  // The <Form> component should have the following actions:
-  
-  // setStudent:Function
-  // setInterviewer:Function
-  // The <Form> component should take the following props:
-  
-  // student:String
-  // interviewers:Array
-  // interviewer:Number
-  // onSave:Function
-  // onCancel:Function
-  

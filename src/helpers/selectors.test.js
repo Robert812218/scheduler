@@ -1,4 +1,6 @@
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { renderHook, act } from "@testing-library/react-hooks";
+import useVisualMode from "hooks/useVisualMode";
 
 const state = {
   days: [

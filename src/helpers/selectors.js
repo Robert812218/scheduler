@@ -1,3 +1,5 @@
+import InterviewerList from "components/interviewerList";
+
 export function getAppointmentsForDay(state, day) {
   const selectedObjEins = state.days.find(({name}) => name === day);
   if (!selectedObjEins) return [];
@@ -5,5 +7,7 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  console.log(interview);
+  if (!interview) return null;
+  const selectedInterview = state.interview.find(({selInt}) => selInt.interview === interview);
+  return selectedInterview.appointments.map(x => state.interview.map([x]));
 }

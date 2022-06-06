@@ -1,36 +1,43 @@
 import React, { useState, useEffect } from "react";
 import 'components/Appointment/styles.scss';
-import { InterviewerList } from "../interviewerList";
-import { Button } from "../Button";
+import InterviewerList from "../interviewerList";
+import Button from "components/Button";
+// import Button from "../Button";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null); 
-
+  const onSave = () => {
+    props.acceptAppointment();
+  }
+  const onCancel = () => {
+    props.rejectAppointment();
+  }
   return (
     <main className="appointment__card appointment__card--create">
       <form autoComplete="off">
         <input 
-          className="appointment__create-input text--semi-bold"
+          className="appointment__create-inputtext--semi-bold"
           value={student}
-          text="text"
+          type="text"
           placeholder="Enter Student Name"
           // your code goes here
           onChange={(event) => setStudent(event.target.value)}
         />
-      </form>
+   
         <InterviewerList 
           // your code goes here
-          Interviewers={props.Interviewers}
+          interviewers={props.interviewers}
           interviewer={interviewer}
           setInterviewer={setInterviewer}
         />
-      <section className="appointment__card-right">
-        <section className="appointment__actions">
-        <Button danger onClick={props.rejectAppointment}>Cancel</Button> 
-        <Button confirm onClick={props.acceptAppointment}>Save</Button>
+        <section className="appointment__card-right">
+          <section className="appointment__actions">
+            <Button danger onClick={onCancel}>Cancel</Button> 
+            <Button confirm onClick={onSave}>Save</Button>
+          </section>
         </section>
-      </section>
+      </form>
     </main>
   );
 }

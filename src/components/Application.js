@@ -14,25 +14,24 @@ export default function Application() {
     interviewers: {}
   });
 
-  // const dailyAppointments = [];
-  
-  
   const setDay = day => setState({...state, day});
 
   function bookInterview(id, interview) {
     const appointment = {
-      ...state,
-      appointments
-      // interview: { ...interview }
-    }
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
     }
-    // id = props.id;
-    // interview = props.Appointment;
+    setState({
+      ...state,
+      appointments
+    })
 
-    return axios.put("/api/appointments:id", { })
+    // return axios.put("/api/appointments:id", { })
   }
   
   function save(name, interviewer) {
@@ -68,6 +67,7 @@ export default function Application() {
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
+        interviewers={appointment.interviewer}
         interview={appointment.interview}
       />
       // <pre>{JSON.stringify(appointment, null, 2)}</pre>

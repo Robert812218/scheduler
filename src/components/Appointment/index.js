@@ -6,13 +6,16 @@ import Show from "./Show";
 import { create } from "react-test-renderer";
 import Form from "./Form";
 import Back from "hooks/useVisualMode"
+import Header from "./Header";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
+    // props.interview ? CREATE : EMPTY
     props.interview ? SHOW : EMPTY
   );
 
@@ -24,14 +27,9 @@ export default function Appointment(props) {
     }
   }
 
-  function Back(name, interviewer) {
-
-  }
-
-
   return (
-    <header className="appointment__time">
-      <h4 className="text--semi-bold">{props.time}</h4>
+    <article className="appointment__time">
+      <Header time={props.time}/>
       {mode === EMPTY && (
         <Empty onAdd={() => transition(CREATE)} />
       )}
@@ -42,10 +40,11 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form interviewers={props.interviewers} onSave={Save(props.name, props.interviewer)} onCancel={back} />
+        <Form interviewers={props.interviewers} onSave={Save} onCancel={back} />
+        // <Form interviewers={props.interviewers} />
       )}
 
-      <hr className="appointment__seperator" />
-    </header>
+    
+    </article>
   );
 }

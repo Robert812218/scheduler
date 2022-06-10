@@ -15,6 +15,7 @@ export default function Form(props) {
   }
   return (
     <main className="appointment__card appointment__card--create">
+      <section className="appointment__card-left">
       <form autoComplete="off">
         <input 
           className="appointment__create-inputtext--semi-bold"
@@ -31,13 +32,15 @@ export default function Form(props) {
           interviewer={interviewer}
           setInterviewer={setInterviewer}
         />
+      </form>
+        </section>
         <section className="appointment__card-right">
           <section className="appointment__actions">
             <Button danger onClick={onCancel}>Cancel</Button> 
             <Button confirm onClick={onSave}>Save</Button>
           </section>
         </section>
-      </form>
+
     </main>
   );
 }

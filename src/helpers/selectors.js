@@ -15,6 +15,7 @@ export function getInterview(state, interview) {
   return selectedInterview.appointments.map(x => state.interview.map([x]));
 }
 
-// export function getInterviewersForDay(state, day) {
-//   const selectedInterviewer = state.InterviewerList.find(({selIntvr}) => selIntvr.appointments === day);
-// }
+export function getInterviewersForDay(state, day) {
+  const selectedInterviewer = state.InterviewerList.find(({selIntvr}) => selIntvr.appointments === day);
+  return 
+}

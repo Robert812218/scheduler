@@ -1,7 +1,7 @@
 import InterviewerList from "components/interviewerList";
 
 export function getAppointmentsForDay(state, day) {
-  const selectedObjEins = state.days.find(({name}) => name === day);
+  const selectedObjEins = state.days.find(({dayName}) => dayName === day);
   if (!selectedObjEins) {
     return []
   };
@@ -16,6 +16,20 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  const selectedInterviewer = state.InterviewerList.find(({selIntvr}) => selIntvr.appointments === day);
-  return 
+  let interviewerDaysArr = [];
+  let outputArr = [];
+
+  for (const i in state.days) {
+    let thisOne = state.days[i];
+    if (thisOne.name === day) {
+      interviewerDaysArr.push(thisOne.interviewers);
+    }
+  }
+  console.log(interviewerDaysArr[0]);
+  for (const j of interviewerDaysArr[0]) {
+    let intvs = state.interviewers[j];
+    outputArr.push(intvs);
+  }
+  console.log(outputArr);
+  return outputArr;
 }

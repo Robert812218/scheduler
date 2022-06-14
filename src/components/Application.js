@@ -4,7 +4,7 @@ import DayList from "components/DayList";
 import "components/Application.scss";
 import "components/DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 export default function Application() {
   const [state, setState] = useState({
@@ -57,6 +57,13 @@ export default function Application() {
         appointments: appointments.data,
         interviewers: interviewers.data,
       })
+      getInterviewersForDay({
+        ...state,
+        // days: all[0].data,
+        days: days.data,
+        appointments: appointments.data,
+        interviewers: interviewers.data,
+      }, state.day);
     })
   }, [state.day]);
 
@@ -72,7 +79,9 @@ export default function Application() {
       />
       // <pre>{JSON.stringify(appointment, null, 2)}</pre>
     )
-  })
+  });
+
+  // console.log(getInterviewersForDay(state, state.day));
   return (
     <main className="layout">
       <section className="sidebar">

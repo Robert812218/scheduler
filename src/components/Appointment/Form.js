@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import 'components/Appointment/styles.scss';
 import InterviewerList from "../interviewerList";
 import Button from "components/Button";
-// import Button from "../Button";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
@@ -17,13 +16,24 @@ export default function Form(props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
       <form autoComplete="off">
-        <input 
+        {/* <input 
           className="appointment__create-inputtext--semi-bold"
           value={student}
           type="text"
           placeholder="Enter Student Name"
           // your code goes here
           onChange={(event) => setStudent(event.target.value)}
+        /> */}
+        <input
+          className="appointment__create-input text--semi-bold"
+          name="name"
+          type="text"
+          placeholder="Enter Student Name"
+          value={name}
+          onChange={event => {
+            setName(event.target.value);
+          }}
+          data-testid="student-name-input"
         />
    
         <InterviewerList 

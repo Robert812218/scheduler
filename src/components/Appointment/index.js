@@ -29,20 +29,24 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-    transition(SAVING);
     const interview = {
       student: name,
       interviewer
-    }
+    };
+
+    transition(SAVING);
+
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
-  function deleting() {
+  function destroy(event) {
     transition(DELETING, true);
     props
       .cancelInterview(props.id)
-      .then(() => {
-        transition(EMPTY);
-      })
+      .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
   }
 

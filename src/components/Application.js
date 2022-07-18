@@ -1,72 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 import DayList from "components/DayList";
 import "components/Application.scss";
 import "components/DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import useApplicationData from "hooks/useApplicationData";
 
-export default function Application() {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });
-
-  const setDay = day => setState({...state, day});
-
-  function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    }
-    setState({
-      ...state,
-      appointments
-    })
-
-    // return axios.put("/api/appointments:id", { })
-  }
-  
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-  // props.bookInterview
-  }
-
-  useEffect(() => {
-    Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers"),
-    ]).then((all) => {
-      const [days, appointments, interviewers] = all;
-      // console.log("days: ", days);
-      setState({
-        ...state,
-        // days: all[0].data,
-        days: days.data,
-        appointments: appointments.data,
-        interviewers: interviewers.data,
-      })
-      getInterviewersForDay({
-        ...state,
-        // days: all[0].data,
-        days: days.data,
-        appointments: appointments.data,
-        interviewers: interviewers.data,
-      }, state.day);
-    })
-  }, [state.day]);
-
+export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   let schedule = dailyAppointments.map(appointment => {
     return (
@@ -108,3 +49,10 @@ export default function Application() {
     </main>
   ); 
 }
+
+const {
+  setState,
+  setDay,
+  bookInterview,
+  cancelInterview
+} = useApplicationData();

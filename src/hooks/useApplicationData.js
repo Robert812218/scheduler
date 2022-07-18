@@ -10,6 +10,17 @@ export default function useApplicationData() {
     });
   
     const setDay = day => setState({...state, day});
+
+    function findDay(day) {
+      const daysOfWeek = {
+        Monday: 0,
+        Tuesday: 1,
+        Wednesday: 2,
+        Thursday: 3,
+        Friday: 4
+      }
+      return daysOfWeek[day];
+    }
   
     function bookInterview(id, interview) {
       const appointment = {
@@ -26,7 +37,7 @@ export default function useApplicationData() {
         appointments
       })
   
-      return axios.put("/api/appointments:id", {})
+      return axios.put("/api/appointments:id", {interview: interview})
     }
     
     function save(name, interviewer) {
@@ -36,6 +47,32 @@ export default function useApplicationData() {
       };
     // props.bookInterview
     }
+
+    const dayOfWeek = findDay(state.day);
+
+    // let day = {
+    //   ...state.days[dayOfWeek],
+    //   spots: state.days[dayOfWeek]
+    // }
+    if (!state.appointments[id].interview) {
+      day = {
+        ...state.days[dayOfweek],
+        spots: state.days[dayOfWeek].spots - 1
+      }
+    } else {
+      day = {
+        ...state.days[dayOfWeek],
+        spots: state.days[dayOfWeek].spots - 1
+      }
+    } else {
+      day = {
+        ...state.days[dayOfWeek],
+        spots: state.days[dayOfWeek].spots
+      }
+    }
+
+    let days = state.days
+    days[dayOfWeek] = day;
 
     function cancelInterview(id) {
       const appointment = {
@@ -48,9 +85,19 @@ export default function useApplicationData() {
         [id]: appointment
       }
 
+      const thisWeekDay = findDay(state.day)
+
+      const day = {
+        ...state.days[dayOfWeek],
+        spots: state.days[dayOfWeek].spot + 1
+      }
+
+      let days = state.days
+      days[dayOfWeek] = day;
+
       return axios.delete("/api/appointments:id", {})
       .then(res => {
-        setState({...state, appointments})
+        setState({...state, appointments, days})
         return res
       })
     }
@@ -79,4 +126,6 @@ export default function useApplicationData() {
         }, state.day);
       })
     }, [state.day]);
+
+
 }

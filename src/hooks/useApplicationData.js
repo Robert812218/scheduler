@@ -50,16 +50,11 @@ export default function useApplicationData() {
 
     const dayOfWeek = findDay(state.day);
 
-    // let day = {
-    //   ...state.days[dayOfWeek],
-    //   spots: state.days[dayOfWeek]
-    // }
+    let day = {
+      ...state.days[dayOfWeek],
+      spots: state.days[dayOfWeek]
+    }
     if (!state.appointments[id].interview) {
-      day = {
-        ...state.days[dayOfweek],
-        spots: state.days[dayOfWeek].spots - 1
-      }
-    } else {
       day = {
         ...state.days[dayOfWeek],
         spots: state.days[dayOfWeek].spots - 1

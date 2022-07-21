@@ -35,7 +35,7 @@ const interviewers = [
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
 
-let interviewer = interviewers[1];
+let interviewer = interviewers[0];
 
 it("renders without crashing", () => {
   render(<Application />);

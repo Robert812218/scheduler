@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import 'components/Appointment/styles.scss';
 import InterviewerList from "../interviewerList";
 import Button from "components/Button";
+const { getByPlaceholderText } = render(<Form />);
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
+
   const [interviewer, setInterviewer] = useState(props.interviewer || null); 
+
   const onSave = () => {
     props.acceptAppointment();
   }

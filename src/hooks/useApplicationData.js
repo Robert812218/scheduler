@@ -55,10 +55,11 @@ export default function useApplicationData() {
       spots: state.days[dayOfWeek]
     }
     if (!state.appointments[id].interview) {
-      day = {
-        ...state.days[dayOfWeek],
-        spots: state.days[dayOfWeek].spots - 1
-      }
+      // day = {
+      //   ...state.days[dayOfWeek],
+      //   spots: state.days[dayOfWeek].spots - 1
+      // }
+      day.spots = state.days[dayOfWeek].spots - 1
     } else {
       day = {
         ...state.days[dayOfWeek],
@@ -121,6 +122,4 @@ export default function useApplicationData() {
         }, state.day);
       })
     }, [state.day]);
-
-
 }

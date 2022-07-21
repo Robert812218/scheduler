@@ -1,27 +1,83 @@
+/*
+  We are rendering `<Application />` down below, so we need React.createElement
+*/
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
-import Application from "components/Application";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
+/*
+  We import our helper functions from the react-testing-library
+  The render function allows us to render Components
+*/
+import { render, cleanup } from "@testing-library/react";
+
+/*
+  We import the component that we are testing
+*/
+
+import Application from "components/Application";
+import Appointment from "components/Appointment";
+import Confirm from "components/Appointment/Confirm";
+import Empty from "components/Appointment/Empty";
+import Error from "components/Appointment/Error";
+import Form from "components/Appointment/Form";
+import Header from "components/Appointment/Header";
+import Show from "components/Appointment/Show";
+import Status from "components/Appointment/Status";
+
+/*
+  A test that renders a React Component
+*/
+
+const interviewers = [
+  { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
+  { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
+  { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
+  { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
+  { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
 
-afterEach(cleanup);
+let interviewer = interviewers[0];
 
 it("renders without crashing", () => {
   render(<Application />);
 });
+
+describe("Appointment", () => {
+  it("renders without crashing", () => {
+    render(<Appointment />);
+  });
+
+  it("Confirm renders without crashing", () => {
+    render(<Confirm 
+      message="Confirm"  
+    />);
+  });
+
+  it("Empty renders without crashing", () => {
+    render(<Empty />);
+  });
+
+  it("Error renders without crashing", () => {
+    render(<Error 
+        message="Error"
+      />)
+  });
+
+  it("Form renders without crashing", () => {
+    render(<Form
+      name={interviewer}
+      value={2}
+      interviewers={interviewers}
+    />);
+  });
+
+  it("Header renders without crashing", () => {
+    render(<Show 
+      student="random"
+      interviewer={interviewer}
+    />);
+  });
+
+  it("Status renders without crashing", () => {
+    render(<Status />);
+  });
+})

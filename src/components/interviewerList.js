@@ -26,6 +26,6 @@ export default function InterviewerList(props) {
 };
 
 InterviewerList.propTypes = {
-  value: propTypes.number,
+  value: PropTypes.number,
   interviewers: PropTypes.array.isRequired
 }

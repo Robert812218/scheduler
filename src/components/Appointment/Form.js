@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import 'components/Appointment/styles.scss';
 import InterviewerList from "../interviewerList";
 import Button from "components/Button";
-const { getByPlaceholderText } = render(<Form />);
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
@@ -32,7 +31,7 @@ export default function Form(props) {
           name="name"
           type="text"
           placeholder="Enter Student Name"
-          value={name}
+          value={props.name}
           onChange={event => {
             setName(event.target.value);
           }}

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
+import { getInterviewersForDay } from 'helpers/selectors';
 
 export default function useApplicationData() {
     const [state, setState] = useState({
@@ -9,6 +10,7 @@ export default function useApplicationData() {
       interviewers: {}
     });
   
+
     const setDay = day => setState({...state, day});
 
     function findDay(day) {
@@ -45,7 +47,6 @@ export default function useApplicationData() {
         student: name,
         interviewer
       };
-    // props.bookInterview
     }
 
     const dayOfWeek = findDay(state.day);
@@ -54,11 +55,7 @@ export default function useApplicationData() {
       ...state.days[dayOfWeek],
       spots: state.days[dayOfWeek]
     }
-    if (!state.appointments[id].interview) {
-      // day = {
-      //   ...state.days[dayOfWeek],
-      //   spots: state.days[dayOfWeek].spots - 1
-      // }
+    if (!state.appointments) {
       day.spots = state.days[dayOfWeek].spots - 1
     } else {
       day = {

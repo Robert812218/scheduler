@@ -60,7 +60,7 @@ export default function useApplicationData() {
     } else {
       day = {
         ...state.days[dayOfWeek],
-        spots: state.days[dayOfWeek].spots
+        // spots: state.days[dayOfWeek]
       }
     }
 
@@ -102,7 +102,6 @@ export default function useApplicationData() {
         axios.get("/api/interviewers"),
       ]).then((all) => {
         const [days, appointments, interviewers] = all;
-        // console.log("days: ", days);
         setState({
           ...state,
           // days: all[0].data,

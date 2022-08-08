@@ -18,14 +18,13 @@ export default function Form(props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
       <form autoComplete="off">
-        {/* <input 
+        <input 
           className="appointment__create-inputtext--semi-bold"
           value={student}
           type="text"
           placeholder="Enter Student Name"
-          // your code goes here
           onChange={(event) => setStudent(event.target.value)}
-        /> */}
+        />
         <input
           className="appointment__create-input text--semi-bold"
           name="name"
@@ -33,13 +32,12 @@ export default function Form(props) {
           placeholder="Enter Student Name"
           value={props.name}
           onChange={event => {
-            setName(event.target.value);
+            setStudent(event.target.value);
           }}
           data-testid="student-name-input"
         />
    
         <InterviewerList 
-          // your code goes here
           interviewers={props.interviewers}
           interviewer={interviewer}
           setInterviewer={setInterviewer}

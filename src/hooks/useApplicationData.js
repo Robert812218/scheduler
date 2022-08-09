@@ -10,7 +10,6 @@ export default function useApplicationData() {
       interviewers: {}
     });
   
-
     const setDay = day => setState({...state, day});
 
     function findDay(day) {
@@ -60,7 +59,7 @@ export default function useApplicationData() {
     } else {
       day = {
         ...state.days[dayOfWeek],
-        // spots: state.days[dayOfWeek]
+        spots: state.days[dayOfWeek].spots
       }
     }
 
@@ -102,6 +101,7 @@ export default function useApplicationData() {
         axios.get("/api/interviewers"),
       ]).then((all) => {
         const [days, appointments, interviewers] = all;
+        // console.log("days: ", days);
         setState({
           ...state,
           // days: all[0].data,
@@ -117,5 +117,5 @@ export default function useApplicationData() {
           interviewers: interviewers.data,
         }, state.day);
       })
-    }, [state.day]);
-}
+    }, [state.days]);
+  }

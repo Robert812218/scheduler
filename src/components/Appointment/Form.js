@@ -5,8 +5,8 @@ import Button from "components/Button";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
-
   const [interviewer, setInterviewer] = useState(props.interviewer || null); 
+  // const [name, setName] = useState(props.input || null);
 
   const onSave = () => {
     props.acceptAppointment();
@@ -23,6 +23,7 @@ export default function Form(props) {
           value={student}
           type="text"
           placeholder="Enter Student Name"
+          // your code goes here
           onChange={(event) => setStudent(event.target.value)}
         />
         <input
@@ -32,12 +33,13 @@ export default function Form(props) {
           placeholder="Enter Student Name"
           value={props.name}
           onChange={event => {
-            setStudent(event.target.value);
+            // setName(event.target.value);
           }}
           data-testid="student-name-input"
         />
    
         <InterviewerList 
+          // your code goes here
           interviewers={props.interviewers}
           interviewer={interviewer}
           setInterviewer={setInterviewer}

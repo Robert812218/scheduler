@@ -9,7 +9,7 @@ export default function InterviewerListItem(props) {
   })
 
   return (
-      <li className={interviewerListItemClass} onClick={() => props.setInterviewer(props.id)}>
+      <li className={interviewerListItemClass} onClick={props.setInterviewer}>
         <img
         className="interviewers__item-image"
         src={props.avatar}
@@ -19,15 +19,3 @@ export default function InterviewerListItem(props) {
       </li>
   );
 }
-
-// Compass says return() should be:
-// return (
-//   <li className={interviewerClass} onClick={props.setInterviewer}>
-//     <img
-//       className="interviewers__item-image"
-//       src={props.avatar}
-//       alt={props.name} 
-//     />
-//     {props.selected && props.name}
-//   </li>
-// );

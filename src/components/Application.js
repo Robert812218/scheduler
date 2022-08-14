@@ -16,12 +16,10 @@ export default function Application(props) {
   } = useApplicationData();
 
   // console.log("## state", state);
-  // console.log(state.day);
-  
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
-  // console.log(dailyAppointments);
 
   let schedule = dailyAppointments.map(appointment => {
     return (
@@ -29,11 +27,15 @@ export default function Application(props) {
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
-        interviewers={appointment.interviewer}
-        interview={appointment.interview}
+        interviewers={dailyInterviewers}
+        interview={getInterview(state, appointment.interview)}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     )
   });
+
+
 
   return (
     <main className="layout">
@@ -57,7 +59,10 @@ export default function Application(props) {
         alt="Lighthouse Labs"
       />
       </section>
-      <section>{schedule}</section>
+      <section className="schedule">
+        {schedule} <Appointment key = "last"
+        time = "5pm" />
+      </section>
     </main>
   ); 
 }

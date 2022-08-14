@@ -18,29 +18,31 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-
+  console.log(state);
   if (!interview) return null;
-  const selectedInterview = state.interview.find(({selInt}) => selInt.interview === interview);
+  const newInterview = {
+    student: interview.student,
+    interviewer: state.interviewers[interview.interviewer]
+  };
 
-  return selectedInterview.appointments.map(x => state.interview.map([x]));
-
+  console.log(newInterview);
+  return newInterview;
 }
 
 export function getInterviewersForDay(state, day) {
-  let interviewerDaysArr = [];
-  let outputArr = [];
+  let arr = [];
+  let resultsArr = [];
 
-  for (const i in state.days) {
-    let thisOne = state.days[i];
-    if (thisOne.name === day) {
-      interviewerDaysArr.push(thisOne.interviewers);
+  state.days.forEach((selectedDay) => {
+    if (selectedDay.name === day) {
+      arr = selectedDay.interviewers;
     }
-  }
-  console.log(interviewerDaysArr[0]);
-  for (const j of interviewerDaysArr[0]) {
-    let intvs = state.interviewers[j];
-    outputArr.push(intvs);
-  }
-  console.log(outputArr);
-  return outputArr;
+  })
+  arr.forEach((item) => {
+    if (state.interviewers[item]) {
+      resultsArr.push(state.interviewers[item]);
+    }
+  })
+
+  return resultsArr;
 }

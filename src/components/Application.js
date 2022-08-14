@@ -15,10 +15,13 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-  console.log("## state", state);
+  // console.log("## state", state);
+  // console.log(state.day);
   
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  // console.log(dailyAppointments);
 
   let schedule = dailyAppointments.map(appointment => {
     return (
@@ -45,7 +48,7 @@ export default function Application(props) {
         <DayList
           days={state.days}
           day={state.day}
-          onChange={day => console.log(day)}
+          onChange={day => setDay(day)}
         />
       </nav>
       <img
